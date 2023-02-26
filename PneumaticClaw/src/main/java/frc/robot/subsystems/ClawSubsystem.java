@@ -8,12 +8,16 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClawSubsystem extends SubsystemBase {
   Joystick joystick = new Joystick(0);
   CANSparkMax telescope = new CANSparkMax(2, MotorType.kBrushless);
   CANSparkMax pulley = new CANSparkMax(1, MotorType.kBrushless);
+  Solenoid solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 5);
+
   public ClawSubsystem() {
     // telescope.setInverted(true);
   }
@@ -34,5 +38,11 @@ public class ClawSubsystem extends SubsystemBase {
     telescope.setVoltage(0.0);
     pulley.setVoltage(0.0);
   }
-  
+  public void closeClaw() {
+    solenoid.set(true);
+  }
+  public void openClaw() {
+    solenoid.set(false);
+    System.out.println("In OpenClaw");
+  }
 }

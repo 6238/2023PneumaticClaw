@@ -29,10 +29,17 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    new JoystickButton(joystick, 5).whileTrue(Commands.run(() -> claw.extendTelescope(), claw)).whileFalse(Commands.run(()->claw.stopClaw(), claw));;
-    new JoystickButton(joystick, 3).whileTrue(Commands.run(() -> claw.retractTelescope(), claw)).whileFalse(Commands.run(()->claw.stopClaw(), claw));;
-    new JoystickButton(joystick, 6).whileTrue(Commands.run(() -> claw.extendPulley(), claw)).whileFalse(Commands.run(()->claw.stopClaw(), claw));;
-    new JoystickButton(joystick, 4).whileTrue(Commands.run(() -> claw.retractPulley(), claw)).whileFalse(Commands.run(()->claw.stopClaw(), claw));
+    new JoystickButton(joystick, 5).whileTrue(Commands.run(() -> claw.extendTelescope(), claw))
+        .whileFalse(Commands.run(()->claw.stopClaw(), claw));
+    new JoystickButton(joystick, 3).whileTrue(Commands.run(() -> claw.retractTelescope(), claw))
+        .whileFalse(Commands.run(()->claw.stopClaw(), claw));
+    new JoystickButton(joystick, 6).whileTrue(Commands.run(() -> claw.extendPulley(), claw))
+        .whileFalse(Commands.run(()->claw.stopClaw(), claw));
+    new JoystickButton(joystick, 4).whileTrue(Commands.run(() -> claw.retractPulley(), claw))
+        .whileFalse(Commands.run(()->claw.stopClaw(), claw));
+    new JoystickButton(joystick, 2).whileTrue(Commands.runOnce(() -> claw.openClaw(), claw))
+        .whileFalse(Commands.runOnce(() -> claw.closeClaw(), claw));
+
   }
 
   public Command getAutonomousCommand() {
